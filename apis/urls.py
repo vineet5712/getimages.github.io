@@ -5,7 +5,8 @@ from rest_framework import routers
 
 # import everything from views
 from .views import *
-
+from django.conf import settings
+from django.conf.urls.static import static
 # define the router
 router = routers.DefaultRouter()
 
@@ -16,4 +17,4 @@ router.register(r'geeks', GeeksViewSet)
 urlpatterns = [
 	path('', include(router.urls)),
 	path('api-auth/', include('rest_framework.urls'))
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
